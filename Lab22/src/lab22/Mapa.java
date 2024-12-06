@@ -55,11 +55,13 @@ public class Mapa {
             }
         }
     }
+    public String getTerritorio(){
+        return territorio;
+        
+    }
 
     public void bonusTerritorio() {
-        System.out.println("==================================");
-        System.out.println("El territorio es "+territorio);
-        System.out.println("==================================");
+
         System.out.println("Aplicando bonus de territorio...");
         for(Ejercito ejercito : ejercitosReino1){
             System.out.println("Verificando beneficio para el reino: "+ejercito.getNombreReino());
@@ -121,36 +123,42 @@ public class Mapa {
             }
         }
     }
-    public void mostrarTablero() {
-        System.out.print("    ");
-        String letrasCol="             A                           B                        C                "
-                + "        D                          E             "
-                + "           F                        G                         H                        I       "
-                + "                    J"; 
-        System.out.println(letrasCol);
-        System.out.print("    ");
-        for(int j=0;j<10;j++) {
-            System.out.print("--------------------------");
-        }
-        System.out.println("-");
-        for(int i=0;i<10;i++){
-            System.out.printf(" %2d |",i+1);
-            for(int j=0;j<10;j++){
-                String contenidoCelda=(tablero[i][j]==null) ? "" : tablero[i][j];
-                System.out.printf("%-25s|", contenidoCelda);
-            }
-            System.out.println();
-            System.out.print("    ");
-            for(int j=0;j<10;j++){
-                System.out.print("--------------------------");
-            }
-            System.out.println("-");
-        }
+    public String mostrarTablero() {
+    String tabla = "";
+    tabla += "    ";
+    String letrasCol = "             A                           B                        C                "
+            + "        D                          E             "
+            + "           F                        G                         H                        I       "
+            + "                    J";
+    tabla += letrasCol;
+    tabla += "\n    ";
+    
+    for (int j = 0; j < 10; j++) {
+        tabla += "--------------------------";
     }
+    tabla += "-\n";
+    
+    for (int i = 0; i < 10; i++) {
+        tabla += String.format(" %2d |", i + 1);
+        for (int j = 0; j < 10; j++) {
+            String contenidoCelda = (tablero[i][j] == null) ? "" : tablero[i][j];
+            tabla += String.format("%-25s|", contenidoCelda);
+        }
+        tabla += "\n    ";
+        for (int j = 0; j < 10; j++) {
+            tabla += "--------------------------";
+        }
+        tabla += "-\n";
+    }
+
+    return tabla;
+}
+
     public boolean movimiento(List<Ejercito> ejercitoActivo, List<Ejercito> ejercitoOponente) {
         Scanner scan=new Scanner(System.in);
         boolean movValido=false;
         while(!movValido){
+            String info="Ingrese la posicion del soldado a mover:";
             System.out.println("Ingrese la posicion del soldado a mover:");
             System.out.print("Fila: ");
             int fila=scan.nextInt()-1;

@@ -40,6 +40,7 @@ public class Lab22 {
         System.out.println("------------------------------------");
         Mapa tablero=new Mapa(ejercitosReino1, ejercitosReino2);
         tablero.bonusTerritorio();
+        
         boolean continuar=true;
         int turno=1;
         while(continuar){
